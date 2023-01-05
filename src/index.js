@@ -51,8 +51,8 @@ const genDiff = (file1Path, file2Path) => {
   const file2Data = fs.readFileSync(getFilePath(file2Path), 'utf-8');
   const obj1 = JSON.parse(file1Data);
   const obj2 = JSON.parse(file2Data);
-  const difference = getDifference(obj1, obj2);
-  return diffStyle(_.sortBy(difference, (o) => o.key));
+  const difference = _.sortBy(getDifference(obj1, obj2), (o) => o.key);
+  return diffStyle(difference);
 };
 
 export default genDiff;
