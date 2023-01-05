@@ -2,8 +2,10 @@ import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import process from 'process';
+import parse from './parsers.js';
 
 const getFilePath = (filePath) => path.resolve(process.cwd(), filePath);
+const getFormatName = (filePath) => path.extname(filePath).slice(1);
 
 const getDifference = (data1, data2) => {
   const keys = _.union(Object.keys(data1), Object.keys(data2));
@@ -49,8 +51,10 @@ const diffStyle = (difference) => {
 const genDiff = (file1Path, file2Path) => {
   const file1Data = fs.readFileSync(getFilePath(file1Path), 'utf-8');
   const file2Data = fs.readFileSync(getFilePath(file2Path), 'utf-8');
-  const obj1 = JSON.parse(file1Data);
-  const obj2 = JSON.parse(file2Data);
+  const file1Format = getFormatName(file1Path);
+  const file2Format = getFormatName(file2Path);
+  const obj1 = parse(file1Data, file1Format);
+  const obj2 = parse(file2Data, file2Format);
   const difference = _.sortBy(getDifference(obj1, obj2), (o) => o.key);
   return diffStyle(difference);
 };
