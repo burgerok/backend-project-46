@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: ["error", { "allow": ["__filename", "__dirname"] }] */
+
 import { test, expect, beforeEach } from '@jest/globals';
 import { fileURLToPath } from 'url';
 import path from 'path';
