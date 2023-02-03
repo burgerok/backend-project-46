@@ -1,1 +1,4 @@
 /node_modules/
+/coverage/
+/src/formatters/stylish-old.js
+/src/getdifference3.js
