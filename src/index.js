@@ -16,7 +16,6 @@ const genDiff = (file1Path, file2Path, format) => {
   const obj1 = parse(file1Data, file1Format);
   const obj2 = parse(file2Data, file2Format);
   const difference = getDifference(obj1, obj2);
-  console.log(difference);
   return render(difference, format);
 };
 
