@@ -24,14 +24,14 @@ const typeActions = {
   ],
 };
 
-const render = (ast, depth = 0) => {
+const renderStylish = (ast, depth = 0) => {
   const processed = ast
     .map((obj) => {
       const indent = depth + 2;
-      return typeActions[obj.type](obj, indent, render);
+      return typeActions[obj.type](obj, indent, renderStylish);
     });
   const result = _.flatten(processed).join('\n');
   return `{\n${result}\n${step(depth)}}`;
 };
 
-export default (ast) => `${render(ast)}\n`;
+export default renderStylish;

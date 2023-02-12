@@ -15,10 +15,12 @@ const inputFormats = ['json', 'yml'];
 
 let resultStylish;
 let resultPlain;
+let resultJson;
 
 beforeEach(() => {
   resultStylish = readFixture('resultStylish.txt');
   resultPlain = readFixture('resultPlain.txt');
+  resultJson = readFixture('resultJson.txt');
 });
 
 test.each(inputFormats)('standart genDiff for %s input format', (format) => {
@@ -31,4 +33,10 @@ test.each(inputFormats)('plain genDiff for %s input format', (format) => {
   const file1Path = getFixturePath(`file1.${format}`);
   const file2Path = getFixturePath(`file2.${format}`);
   expect(genDiff(file1Path, file2Path, 'plain')).toEqual(resultPlain);
+});
+
+test.each(inputFormats)('json genDiff for %s input format', (format) => {
+  const file1Path = getFixturePath(`file1.${format}`);
+  const file2Path = getFixturePath(`file2.${format}`);
+  expect(genDiff(file1Path, file2Path, 'json')).toEqual(resultJson);
 });
