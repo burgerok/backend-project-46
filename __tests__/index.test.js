@@ -13,15 +13,9 @@ const readFixture = (fileName) => fs.readFileSync(getFixturePath(fileName), 'utf
 
 const inputFormats = ['json', 'yml'];
 
-let resultStylish;
-let resultPlain;
-let resultJson;
-
-beforeEach(() => {
-  resultStylish = readFixture('resultStylish.txt');
-  resultPlain = readFixture('resultPlain.txt');
-  resultJson = readFixture('resultJson.txt');
-});
+const resultStylish = readFixture('resultStylish.txt');
+const resultPlain = readFixture('resultPlain.txt');
+const resultJson = readFixture('resultJson.txt');
 
 test.each(inputFormats)('standart genDiff for %s input format', (format) => {
   const file1Path = getFixturePath(`file1.${format}`);
